@@ -4,24 +4,91 @@ layout: page
 title: Deploying to Servers or Public Cloud
 ---
 
-The following guides can help with the deployment to public cloud providers:
-* [AWS Lambda using the Serverless Application Model (SAM)](/documentation/server/guides/deploying/aws-sam-lambda.html)
-* [AWS Fargate with Vapor and MongoDB Atlas](/documentation/server/guides/deploying/aws-copilot-fargate-vapor-mongo.html)
-* [AWS EC2](/documentation/server/guides/deploying/aws.html)
-* [DigitalOcean](/documentation/server/guides/deploying/digital-ocean.html)
-* [Heroku](/documentation/server/guides/deploying/heroku.html)
-* [Kubernetes & Docker](/documentation/server/guides/packaging.html#docker)
-* [GCP](/documentation/server/guides/deploying/gcp.html)
-* _Have a guides for other popular public clouds like Azure? Add it here!_
+The following guides can help with the packaging and deployment of a server-side Swift application to private servers or public cloud providers.
 
-If you are deploying to your own servers (e.g. bare metal, VMs or Docker) there are several strategies for packaging Swift applications for deployment, see the [Packaging Guide](/server/guides/packaging.html) for more information.
+## Packaging
 
-## Deploying a Debuggable Configuration (Production on Linux)
+<ul class="grid-level-0">
+    <li class="grid-level-1">
+        <h3>Docker</h3>
+        <p>This guide covers the process of creating a Docker image and using Docker Compose to host the necessary infrastructure on your local machine. You’ll learn how to use a pre-defined docker-compose file and Dockerfile, build the image locally.</p>
+        <a href="/documentation/server/guides/packaging" class="cta-secondary">Packaging using Docker</a>
+    </li>
+    <li class="grid-level-1">
+        <h3>Building for Linux</h3>
+        <p>The Swift Static Linux SDK allows you to build your program as a fully statically linked executable, with no external dependencies at all (not even the C library), which means that it will run on any Linux distribution as the only thing it depends on is the Linux system call interface.</p>
+        <a href="/documentation/articles/static-linux-getting-started" class="cta-secondary">Getting Started with the Static Linux SDK</a>
+    </li>
+</ul>
 
-- If you have `--privileged`/`--security-opt seccomp=unconfined` containers or are running in VMs or even bare metal, you can run your binary with
 
-        lldb --batch -o "break set -n main --auto-continue 1 -C \"process handle SIGPIPE -s 0\"" -o run -k "image list" -k "register read" -k "bt all" -k "exit 134" ./my-program
+## Deploying to AWS
 
-    instead of `./my-program` to get something akin to a 'crash report' on crash.
+<ul class="grid-level-0">
+    <li class="grid-level-1">
+        <h3>Setting up RDS</h3>
+        <p>Lorem ipsum dolor sit amet</p>
+        <a href="" class="cta-secondary">Read this guide</a>
+    </li>
+    <li class="grid-level-1">
+        <h3>Using RDS during development </h3>
+        <p>Lorem ipsum dolor sit amet</p>
+        <a href="" class="cta-secondary">Read this guide</a>
+    </li>
+    <li class="grid-level-1">
+        <h3>Securing RDS & using a VPN (private access)</h3>
+        <p>Lorem ipsum dolor sit amet</p>
+        <a href="" class="cta-secondary">Read this guide</a>
+    </li>    
+    <li class="grid-level-1">
+        <h3>Using ECR to push Docker images</h3>
+        <p>Lorem ipsum dolor sit amet</p>
+        <a href="" class="cta-secondary">Read this guide</a>
+    </li>
+    <li class="grid-level-1">
+        <h3>Using Fargate as a service</h3>
+        <p>Lorem ipsum dolor sit amet</p>
+        <a href="" class="cta-secondary">Read this guide</a>
+    </li>
+    <li class="grid-level-1">
+        <h3>Setting up EC2</h3>
+        <p>An AWS EC2 instance is a virtual computer in the cloud used to run apps, websites, or services. In this tutorial, you will learn how to set up an AWS EC2 instance, configure its security settings, create a key pair, and connect to it via SSH. This setup is essential for deploying and managing applications on AWS.</p>
+        <a href="" class="cta-secondary">Read this guide</a>
+    </li>
+    <li class="grid-level-1">
+        <h3>Deploying to EC2 </h3>
+        <p></p>
+        <a href="/documentation/server/guides/deploying/aws" class="cta-secondary">Read this guide</a>
+    </li>
+    <li class="grid-level-1">
+        <h3>Deploying to Lambda</h3>
+        <p>This guide illustrates how to deploy a server-side Swift workload on AWS using the AWS Serverless Application Model (SAM) toolkit.</p>
+        <a href="/documentation/server/guides/deploying/aws-sam-lambda" class="cta-secondary">AWS Lambda using the Serverless Application Model (SAM)</a>
+    </li>
+</ul>
 
-- If you don't have `--privileged` (or `--security-opt seccomp=unconfined`) containers (meaning you won't be able to use `lldb`) or you don't want to use lldb, consider using a library like [`swift-backtrace`](https://github.com/swift-server/swift-backtrace) to get stack traces on crash.
+
+## Deploying to other cloud providers
+
+<ul class="grid-level-0">
+    <li class="grid-level-1">
+        <h3>DigitalOcean</h3>
+        <p>This guide will walk you through setting up an Ubuntu virtual machine on a DigitalOcean Droplet. To follow this guide, you will need to have a DigitalOcean account with billing configured.</p>
+        <a href="/documentation/server/guides/deploying/digital-ocean" class="cta-secondary">Deploying to DigitalOcean</a>
+    </li>
+    <li class="grid-level-1">
+        <h3>Heroku</h3>
+        <p>Heroku is a popular all-in-one hosting solution.</p>
+        <a href="/documentation/server/guides/deploying/heroku" class="cta-secondary">Deploying to Heroku</a>
+    </li>
+    <li class="grid-level-1">
+        <h3>Google Cloud Platform (GCP)</h3>
+        <p>This guide describes how to build and run your Swift Server on serverless architecture with Google Cloud Build and Google Cloud Run. We’ll use Artifact Registry to store the Docker images.</p>
+        <a href="/documentation/server/guides/deploying/gcp" class="cta-secondary">Deploying to Google Cloud Platform (GCP)</a>
+    </li>
+</ul>
+
+Have a guides for other popular public clouds like Azure? Add it [here](https://github.com/swiftlang/swift-org-website)!
+
+If you are deploying to your own servers (e.g. bare metal, VMs or Docker) there are several strategies for packaging Swift applications for deployment, see the packaging guides section for more information.
+

@@ -14,7 +14,6 @@ They focus on how to compile, test, deploy and debug such application and provid
 - [Optimizing allocations](/documentation/server/guides/allocations.html)
 - [Debugging multithreading issues and memory checks](/documentation/server/guides/llvm-sanitizers.html)
 - [Deployment](/documentation/server/guides/deployment.html)
-- [Packaging](/documentation/server/guides/packaging.html)
 - [Passkeys](/documentation/server/guides/passkeys.html)
 
 Additionally, there are specific guides for library developers:

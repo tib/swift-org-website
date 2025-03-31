@@ -60,7 +60,7 @@ Overall, Swift on Server opens up new opportunities for developers to build fast
 
 ### Development guides
 
-The Swift Server Workgroup and Swift on Server community have developed a number of [guides](/documentation/server/guides/) for using Swift on the server. They are designed to help teams and individuals running Swift Server applications on Linux and to provide orientation for those who want to start with such development.
+The Swift Server Workgroup and Swift on Server community have created a number of [development guides](/documentation/server/guides/) and [deployment guides](/documentation/server/guides/deployment) for using Swift on the server. They are designed to help teams and individuals running Swift Server applications on Linux and to provide orientation for those who want to start with such development.
 
 
 ## Swift Server Workgroup
