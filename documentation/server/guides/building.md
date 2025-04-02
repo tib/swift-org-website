@@ -54,3 +54,7 @@ SwiftPM can show you the full binary path using `swift build --show-bin-path -c 
     instead of `./my-program` to get something akin to a 'crash report' on crash.
 
 - If you don't have `--privileged` (or `--security-opt seccomp=unconfined`) containers (meaning you won't be able to use `lldb`) or you don't want to use lldb, consider using a library like [`swift-backtrace`](https://github.com/swift-server/swift-backtrace) to get stack traces on crash.
+
+## Static linking and Curl/XML
+
+**Note:** if you are compiling with `-static-stdlib` and using Curl with FoundationNetworking or XML with FoundationXML you must have libcurl and/or libxml2 installed on the target system for it to work.

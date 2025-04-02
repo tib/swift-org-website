@@ -1,16 +1,23 @@
 ---
 redirect_from: "server/guides/packaging"
 layout: page
-title: Packaging Applications for Deployment
+title: Packaging Applications using Docker
 ---
 
-Once an application is built for production, it still needs to be packaged before it can be deployed to servers. There are several strategies for packaging Swift applications for deployment.
+Once an application is built for production, it still needs to be packaged before it can be deployed to servers. 
 
-## Docker
+There are several strategies for packaging Swift applications for deployment. This guide explains how to package a server-side Swift application using Docker and how to communicate with a PostgreSQL database service - both running in separate Docker containers. 
+
+The provided sample repository uses Docker Compose for local orchestration and demonstrates secure SSL communication between the web service and the database.
 
 One of the most popular ways to package applications these days is using container technologies such as [Docker](https://www.docker.com).
 
-Using Docker's tooling, we can build and package the application as a Docker image, publish it to a Docker repository, and later launch it directly on a server or on a platform that supports Docker deployments such as [Kubernetes](https://kubernetes.io). Many public cloud providers including AWS, GCP, Azure, IBM and others encourage this kind of deployment.
+
+
+
+
+
+
 
 Here is an example `Dockerfile` that builds and packages the application on top of CentOS:
 
@@ -59,38 +66,15 @@ At this point, the application's Docker image is ready to be deployed to the ser
 
 See [Docker's documentation](https://docs.docker.com/engine/reference/commandline/) for more complete information about Docker.
 
-### Distroless
 
-[Distroless](https://github.com/GoogleContainerTools/distroless) is a project by Google that attempts to create minimal images containing only the application and its runtime dependencies. They do not contain package managers, shells or any other programs you would expect to find in a standard Linux distribution.
 
-Since distroless supports Docker and is based on Debian, packaging a Swift application on it is fairly similar to the Docker process above. Here is an example `Dockerfile` that builds and packages the application on top of a distroless's C++ base image:
 
-```Dockerfile
-#------- build -------
-# Building using Ubuntu Bionic since its compatible with Debian runtime
-FROM swift:bionic as builder
 
-# set up the workspace
-RUN mkdir /workspace
-WORKDIR /workspace
 
-# copy the source to the docker image
-COPY . /workspace
 
-RUN swift build -c release --static-swift-stdlib
 
-#------- package -------
-# Running on distroless C++ since it includes
-# all(*) the runtime dependencies Swift programs need
-FROM gcr.io/distroless/cc-debian10
-# copy executables
-COPY --from=builder /workspace/.build/release/<executable-name> /
 
-# set the entry point (application name)
-CMD ["<executable-name>"]
-```
 
-Note the above uses `gcr.io/distroless/cc-debian10` as the runtime image which should work for Swift programs that do not use `FoundationNetworking` or `FoundationXML`. In order to provide more complete support we (the community) could put in a PR into distroless to introduce a base image for Swift that includes `libcurl` and `libxml` which are required for `FoundationNetworking` and `FoundationXML` respectively.
 
 ## Archive (Tarball, ZIP file, etc.)
 
@@ -154,6 +138,4 @@ The main disadvantage of this approach that the server has the full toolchain (e
 
 In most cases, source distribution is not advised due to these security concerns.
 
-## Static linking and Curl/XML
 
-**Note:** if you are compiling with `-static-stdlib` and using Curl with FoundationNetworking or XML with FoundationXML you must have libcurl and/or libxml2 installed on the target system for it to work.

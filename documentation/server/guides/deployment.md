@@ -11,7 +11,7 @@ The following guides can help with the packaging and deployment of a server-side
 <ul class="grid-level-0">
     <li class="grid-level-1">
         <h3>Docker</h3>
-        <p>This guide covers the process of creating a Docker image and using Docker Compose to host the necessary infrastructure on your local machine. You’ll learn how to use a pre-defined docker-compose file and Dockerfile, build the image locally.</p>
+        <p>1. This guide covers the process of creating a Docker image and using Docker Compose to host the necessary infrastructure on your local machine. You’ll learn how to use a pre-defined docker-compose file and Dockerfile, build the image locally.</p>
         <a href="/documentation/server/guides/packaging" class="cta-secondary">Packaging using Docker</a>
     </li>
     <li class="grid-level-1">
@@ -32,32 +32,33 @@ The following guides can help with the packaging and deployment of a server-side
     </li>
     <li class="grid-level-1">
         <h3>Using RDS during development </h3>
-        <p>Lorem ipsum dolor sit amet</p>
+        <p>2. + 3. Lorem ipsum dolor sit amet</p>
+        
         <a href="" class="cta-secondary">Read this guide</a>
     </li>
     <li class="grid-level-1">
         <h3>Securing RDS & using a VPN (private access)</h3>
-        <p>Lorem ipsum dolor sit amet</p>
+        <p>4. + 5. Lorem ipsum dolor sit amet</p>
         <a href="" class="cta-secondary">Read this guide</a>
     </li>    
     <li class="grid-level-1">
-        <h3>Using ECR to push Docker images</h3>
+        <h3>6. 7. 8. Using ECR to push Docker images</h3>
         <p>Lorem ipsum dolor sit amet</p>
         <a href="" class="cta-secondary">Read this guide</a>
     </li>
     <li class="grid-level-1">
-        <h3>Using Fargate as a service</h3>
+        <h3>9. Using Fargate as a service deploying from ECR</h3>
         <p>Lorem ipsum dolor sit amet</p>
         <a href="" class="cta-secondary">Read this guide</a>
     </li>
     <li class="grid-level-1">
-        <h3>Setting up EC2</h3>
+        <h3>1. Setting up EC2</h3>
         <p>An AWS EC2 instance is a virtual computer in the cloud used to run apps, websites, or services. In this tutorial, you will learn how to set up an AWS EC2 instance, configure its security settings, create a key pair, and connect to it via SSH. This setup is essential for deploying and managing applications on AWS.</p>
         <a href="" class="cta-secondary">Read this guide</a>
     </li>
     <li class="grid-level-1">
-        <h3>Deploying to EC2 </h3>
-        <p></p>
+        <h3>Deploying to EC2</h3>
+        <p>7. AWS Fargate Task Creation and Run</p>
         <a href="/documentation/server/guides/deploying/aws" class="cta-secondary">Read this guide</a>
     </li>
     <li class="grid-level-1">
@@ -88,7 +89,7 @@ The following guides can help with the packaging and deployment of a server-side
     </li>
 </ul>
 
-Have a guides for other popular public clouds like Azure? Add it [here](https://github.com/swiftlang/swift-org-website)!
-
 If you are deploying to your own servers (e.g. bare metal, VMs or Docker) there are several strategies for packaging Swift applications for deployment, see the packaging guides section for more information.
+
+_Have a guide for other popular public clouds like Azure? Add it by submitting pull requests to the [Swift.org site](https://github.com/swiftlang/swift-org-website)_.
 
