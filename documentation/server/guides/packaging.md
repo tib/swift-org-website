@@ -90,8 +90,6 @@ FROM postgres:latest
 # Set the working directory
 WORKDIR /var/lib/postgresql
 
-RUN rm -rf data/*
-
 # Copy SSL certificate files into the /certs/ directory in the container
 COPY docker/certificates/server.pem docker/certificates/server.key docker/certificates/ca.pem /certs/
 # Set ownership to the postgres user and restrict permissions on the private key for security
@@ -204,7 +202,6 @@ COPY --from=build --chown=hummingbird:hummingbird /staging /app
 
 # Copy additional SSL certificate files needed for the application
 COPY docker/certificates/ca.pem /app/
-# COPY ./eu-central-1-bundle.pem /app/
 
 # Set an environment variable to configure Swift backtraces for debugging
 ENV SWIFT_BACKTRACE=enable=yes,sanitize=yes,threads=all,images=all,interactive=no,swift-backtrace=./swift-backtrace-static
@@ -239,6 +236,8 @@ docker run --rm --name server --network my-network \
 -p 8080:8080 \
 my-server:1.0.0
 ```
+
+> NOTE: The root certificate path is relative to the app/ directory, as the certificates are copied into this location during the image build process.
 
 After starting the server, navigating to [http://localhost:8080](http://localhost:8080) in a browser should display the `Hello, world!` message. To test the API, a todo item can be created using the following cURL command:
 
@@ -322,7 +321,7 @@ To start the database service, use the `docker compose up db` command. To reset 
 
 ```sh
 # run the database service
-docker-compose up db server
+docker compose up db
 
 # reset the whole service, rebuild everything and re-configure
 docker compose down --volumes && docker compose up db --build db
@@ -334,7 +333,7 @@ Environment variables configure the database connection, specifying the host (`d
 
 To start the server service, use the `docker compose up server` command.
 
-To start all the services at once, simply use `docker compose up`
+To start all services at once, use `docker compose up`. To build all images without starting the services, run `docker compose build`.
 
 ## Summary
 
